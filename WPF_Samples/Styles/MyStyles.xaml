@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPF_Samples.Styles"
+                    xmlns:helper="clr-namespace:WPF_Samples.Styles.Helper"
+                    x:Class="WPF_Samples.Styles.MyStyles">
+    <!-- some styles for label, textbox, etc.-->
+    <Style TargetType="Label" x:Key="myLabel">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
+    <Style TargetType="Button" x:Key="myButton">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Margin" Value="10 5" />
+        <Setter Property="Width" Value="150" />
+    </Style>
+    <Style TargetType="Button" x:Key="myNavigationButton">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Background" Value="LightBlue" />
+        <Setter Property="Margin" Value="10 5" />
+        <Setter Property="Width" Value="170" />
+    </Style>
+    <Style TargetType="TextBox" x:Key="mytxtBox">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="10 0" />
+        <Setter Property="helper:EnterUpdatesTextSourceAttachedBehaviour.IsEnabledForStyle" Value="True" />
+        <EventSetter Event="MouseDoubleClick" Handler="SelectText" />
+        <EventSetter Event="GotKeyboardFocus" Handler="SelectText" />
+        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="SelectivelyIgnoreMouseButton" />
+        <!--To display tooltip with the error-->
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="TextBox" x:Key="myFocusOnLoadedTxtBox" BasedOn="{StaticResource mytxtBox}">
+        <EventSetter Event="Loaded" Handler="FocusOnLoaded" />
+    </Style>
+</ResourceDictionary>
