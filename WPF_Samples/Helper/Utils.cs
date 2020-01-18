@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WPF_Samples.Helper
 {
     public static class Utils
     {
-
         /// <summary>
         /// adds the ending slash to the path if missing
         /// </summary>

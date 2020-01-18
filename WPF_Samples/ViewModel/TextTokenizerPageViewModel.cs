@@ -14,7 +14,7 @@ using WPF_Samples.Services;
 namespace WPF_Samples.ViewModel
 {
     /// <summary>
-    /// Log to controls the UI of the TextTokenizer
+    /// ViewModel Logic for supporting the GUI of the TextTokenizer
     /// </summary>
     public class TextTokenizerPageViewModel : ViewModelBase
     {
@@ -52,10 +52,25 @@ namespace WPF_Samples.ViewModel
             }
         }
 
+        private IEnumerable<string> _Items;
         /// <summary>
         /// Binded items result list
         /// </summary>
-        public ObservableCollection<string> Items { get; }
+        public IEnumerable<string> Items
+        {
+            get
+            {
+                return _Items;
+            }
+            set
+            {
+                if (value != _Items)
+                {
+                    _Items = value;
+                    RaisePropertyChanged("Items");
+                }
+            }
+        }
 
         #endregion Properties
 
@@ -87,8 +102,6 @@ namespace WPF_Samples.ViewModel
 
             TokenizeCommand = new RelayCommand(ExecuteTokenize);
             ClearCommand = new RelayCommand(ExecuteClear);
-
-            Items = new ObservableCollection<string>();    //initialize list
         }
 
 
@@ -99,7 +112,7 @@ namespace WPF_Samples.ViewModel
         /// </summary>
         private void ExecuteClear()
         {
-            Items.Clear();
+            Items = null;
         }
 
         /// <summary>
@@ -108,52 +121,18 @@ namespace WPF_Samples.ViewModel
         private void ExecuteTokenize()
         {
             //clear
-            Items.Clear();
+            Items = null;
 
-            IEnumerable<Word> result;
             try
             {
-                //trigger the Diff calculation from the associated service
-                result = _TokenizerService.Tokenize(_Text);
+                //retrieve result from the associated Service
+                Items = _TokenizerService.TokenizeAndConvert(_Text);
             }
             catch (Exception ex)
             {
                 //Actually this should be delegated to a Logger or something
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
-            }
-
-            foreach (var w in result.Where(w => !string.IsNullOrEmpty(w.Message)))
-            {
-                //Display any information/warning/error messages
-                Items.Add(w.Message + "\n");
-            }
-
-            //query all words
-            var words = result.Where(w => string.IsNullOrEmpty(w.Message)).ToList();
-
-            if (!string.IsNullOrEmpty(_Text))
-            {
-                Items.Add(String.Format("This text has {0} words", words.Count()));
-            }
-
-            if (words.Any())
-            {
-                var maxLength = words.Max(w => w.Length);       //retrieve the maximum length
-
-                //query words by length
-                for (int l = 1; l <= maxLength; l++)
-                {
-                    var wordsQuery = words.Where(w => w.Length == l).Select(w => w.Value);
-                    if (!wordsQuery.Any())
-                    {
-                        Items.Add(String.Format("words with {0} letter did not occur", l));
-                    }
-                    else
-                    {
-                        Items.Add(String.Format("words with {0} letters occured {1} times (words={2})", l, wordsQuery.Count(), String.Join(", ", wordsQuery)));
-                    }
-                }
             }
         }
 

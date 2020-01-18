@@ -1,13 +1,14 @@
 ﻿using Stein_Samples.Services.FileSystemCompareService.Helper;
 using Stein_Samples.Services.FileSystemCompareService.Models;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Stein_Samples.Services.FileSystemCompareService
 {
+    /// <summary>
+    /// Service Implementation with logic for comparing a filesystem
+    /// </summary>
     public class FileSystemCompareService : IFileSystemCompareService
     {
         /// <summary>
@@ -17,6 +18,32 @@ namespace Stein_Samples.Services.FileSystemCompareService
         /// <param name="path2"></param>
         public IEnumerable<FileSystemCompareOperation> CompareFolder(string path1, string path2)
         {
+            List<FileSystemCompareOperation> operations = new List<FileSystemCompareOperation>();
+
+            //Valdiate paths
+            var error = this.CheckDirectoryExists(path1);
+            if (!string.IsNullOrEmpty(error))
+            {
+                operations.Add(new FileSystemCompareOperation(message: error));
+            }
+            error = this.CheckDirectoryExists(path2);
+            if (!string.IsNullOrEmpty(error))
+            {
+                operations.Add(new FileSystemCompareOperation(message: error));
+            }
+
+            if (path1 == path2)
+            {
+                //add the associated message to the result list
+                operations.Add(new FileSystemCompareOperation(message: "### Both Destinations are equal! ###"));
+            }
+
+            //check if to continue
+            if (operations.Any())
+            {
+                return operations;
+            }
+
             //identify filesystem sets of both destinations
             IEnumerable<FileSystemItem> files1 = GetFiles(path1);
             IEnumerable<FileSystemItem> files2 = GetFiles(path2);
@@ -28,40 +55,35 @@ namespace Stein_Samples.Services.FileSystemCompareService
                 select f1
             );
 
-            List<FileSystemCompareOperation> operations = new List<FileSystemCompareOperation>();
+            var i = 1;
+            //insert items to be deleted by Linq LEFT JOIN
+            operations.AddRange(
+                (
+                    from f in files2
+                    join e in equalsQuery on f.RelativePath equals e.RelativePath into result
+                    from r in result.DefaultIfEmpty()
+                    where r is null
+                    orderby f.Type descending, f.RelativePath          //Delete FILE first
+                    select new FileSystemCompareOperation(i++, FileOperation.Delete, f)
+                )
+            );
 
-            try
-            {
-                var i = 1;
-                //insert items to be deleted by Linq LEFT JOIN
-                operations.AddRange(
-                    (
-                        from f in files2
-                        join e in equalsQuery on f.RelativePath equals e.RelativePath into result
-                        from r in result.DefaultIfEmpty()
-                        where r is null
-                        orderby f.Type descending, f.RelativePath          //Delete FILE first
-                        select new FileSystemCompareOperation(i++, FileOperation.Delete, f)
-                    )
-                );
+            //insert items to be created by Linq LEFT JOIN
+            operations.AddRange(
+                (
+                    from f in files1
+                    join e in equalsQuery on f.RelativePath equals e.RelativePath into result
+                    from r in result.DefaultIfEmpty()
+                    where r is null
+                    orderby f.Type, f.RelativePath                      //Create DIRECTORY first
+                    select new FileSystemCompareOperation(i++, FileOperation.Create, f)
+                )
+            );
 
-                //insert items to be created by Linq LEFT JOIN
-                operations.AddRange(
-                    (
-                        from f in files1
-                        join e in equalsQuery on f.RelativePath equals e.RelativePath into result
-                        from r in result.DefaultIfEmpty()
-                        where r is null
-                        orderby f.Type, f.RelativePath                      //Create DIRECTORY first
-                        select new FileSystemCompareOperation(i++, FileOperation.Create, f)
-                    )
-                );
-            }
-            catch
+            if (!operations.Any())
             {
-                //MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                //return null;
-                throw;
+                //add the associated message to be displayed by the result control
+                operations.Add(new FileSystemCompareOperation(message: "### Both Destinations are equal! ###"));
             }
 
             return operations;
@@ -112,7 +134,7 @@ namespace Stein_Samples.Services.FileSystemCompareService
         {
             if (!Directory.Exists(path))
             {
-                return "### Invalid or missing Destination! ###";
+                return string.Format("### Invalid or missing Destination '{0}'! ###", path);
             }
             return null;
         }

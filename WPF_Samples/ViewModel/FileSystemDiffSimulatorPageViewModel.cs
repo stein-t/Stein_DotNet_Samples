@@ -18,7 +18,7 @@ using WPF_Samples.Views;
 namespace WPF_Samples.ViewModel
 {
     /// <summary>
-    /// Controls the UI of the FileSystemDiff Simulator
+    /// ViewModel Logic for supporting the GUI of the FileSystemDiffSimulator
     /// </summary>
     public class FileSystemDiffSimulatorPageViewModel : DataErrorViewModelBase
     {
@@ -76,10 +76,25 @@ namespace WPF_Samples.ViewModel
             }
         }
 
+        private IEnumerable<FileSystemCompareOperation> _Items;
         /// <summary>
         /// Binded items result list
         /// </summary>
-        public ObservableCollection<FileSystemCompareOperation> Items { get; }
+        public IEnumerable<FileSystemCompareOperation> Items
+        {
+            get
+            {
+                return _Items;
+            }
+            set
+            {
+                if (value != _Items)
+                {
+                    _Items = value;
+                    RaisePropertyChanged("Items");
+                }
+            }
+        }
 
         #endregion Properties
 
@@ -115,8 +130,6 @@ namespace WPF_Samples.ViewModel
             CompareCommand = new RelayCommand(ExecuteCompare);
             ClearCommand = new RelayCommand(ExecuteClear);
 
-            Items = new ObservableCollection<FileSystemCompareOperation>();     //initialize Items
-
             _Path1 = @"C:\";
             _Path2 = @"C:\";
         }
@@ -133,7 +146,7 @@ namespace WPF_Samples.ViewModel
             //Path1 = @"C:\";
             //Path2 = @"C:\";
 
-            Items.Clear();
+            Items = null;
         }
 
         /// <summary>
@@ -142,27 +155,19 @@ namespace WPF_Samples.ViewModel
         private void ExecuteCompare()
         {
             //clear
-            Items.Clear();
+            Items = null;
 
             if (!IsValid())
             {
                 //add the associated message to be displayed by the result control
-                Items.Add(new FileSystemCompareOperation(message: this.Error));
+                Items = new List<FileSystemCompareOperation>() { new FileSystemCompareOperation(message: this.Error) };
                 return;
             }
 
-            if (_Path1 == _Path2)
-            {
-                //add the associated message to be displayed by the result control
-                Items.Add(new FileSystemCompareOperation(message: "### Both Destinations are equal! ###"));
-                return;
-            }
-
-            IEnumerable<FileSystemCompareOperation> result;
             try
             {
-                //trigger the Diff calculation from the associated service
-                result = _FileSystemCompareService.CompareFolder(_Path1, _Path2);
+                //retrieve result from the associated Service
+                Items = _FileSystemCompareService.CompareFolder(_Path1, _Path2);
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -175,17 +180,6 @@ namespace WPF_Samples.ViewModel
                 //Actually this should be delegated to a Logger or something
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
-            }
-
-            foreach (var item in result)
-            {
-                Items.Add(item);
-            }
-
-            if (!Items.Any())
-            {
-                //add the associated message to be displayed by the result control
-                Items.Add(new FileSystemCompareOperation(message: "### Both Destinations are equal! ###"));
             }
         }
 

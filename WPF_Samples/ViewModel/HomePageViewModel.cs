@@ -8,6 +8,9 @@ using WPF_Samples.Services;
 
 namespace WPF_Samples.ViewModel
 {
+    /// <summary>
+    /// Very simple Navigation logic
+    /// </summary>
     public class HomePageViewModel
     {
         #region Fields

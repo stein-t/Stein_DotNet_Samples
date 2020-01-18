@@ -1,7 +1,5 @@
 ﻿using Stein_Samples.Services.TextTokenizerService.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Stein_Samples.Services.TextTokenizerService
 {
@@ -10,6 +8,14 @@ namespace Stein_Samples.Services.TextTokenizerService
     /// </summary>
     public interface ITokenizerService
     {
+        /// <summary>
+        /// Tokenizes the text and converts the word list into the appropriate format
+        /// Instead the caller could also call both methods separately if to do some custom client-specific stuff with the Word list
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        IEnumerable<string> TokenizeAndConvert(string text);
+
         /// <summary>
         /// Tokenizes the provided text:
         /// Text inside quotes or double quotes is counted as exactly one word 
@@ -20,6 +26,13 @@ namespace Stein_Samples.Services.TextTokenizerService
         /// </summary>
         /// <param name="text"></param>
         IEnumerable<Word> Tokenize(string text);
+
+        /// <summary>
+        /// converts the Word list into the appropriate target format
+        /// </summary>
+        /// <param name="words"></param>
+        /// <param name="textInput"></param>
+        IEnumerable<string> ConvertWordsToResult(IEnumerable<Word> words, string textInput);
 
         /// check for char is number
         /// </summary>
@@ -33,6 +46,5 @@ namespace Stein_Samples.Services.TextTokenizerService
         /// <param name="c"></param>
         /// <returns></returns>
         bool IsLatinLetter(char c);
-
     }
 }

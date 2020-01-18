@@ -1,15 +1,26 @@
 ﻿using Stein_Samples.Services.TextTokenizerService.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Stein_Samples.Services.TextTokenizerService
 {
     /// <summary>
-    /// Service class with methods for tokenizing a text
-    /// Actually the service must not be static. Instead it would be registered in a Serviceprovider DI container to be consumed by the application with Dependency Injection!
+    /// Service Implementation with logic for providing tokenizing a text
     /// </summary>
     public class TokenizerService : ITokenizerService
     {
+        /// <summary>
+        /// Tokenizes the text and converts the word list into the appropriate format
+        /// Instead the caller could also call both methods separately if to do some additional client-specific stuff with the Word list or format
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public IEnumerable<string> TokenizeAndConvert(string text)
+        {
+            return this.ConvertWordsToResult(this.Tokenize(text), text);
+        }
+
         /// <summary>
         /// Tokenizes the provided text:
         /// Text inside quotes or double quotes is counted as exactly one word 
@@ -26,6 +37,11 @@ namespace Stein_Samples.Services.TextTokenizerService
             if (string.IsNullOrEmpty(text))
             {
                 words.Add(new Word(message: "### No input provided! ###"));
+            }
+
+            //check if to continue
+            if (words.Any())
+            {
                 return words;
             }
 
@@ -75,8 +91,9 @@ namespace Stein_Samples.Services.TextTokenizerService
 
             if (isStartedQuotation != null)
             {
-                //provide warning
-                words.Add(new Word(message: "### WARNING: Missing associated ending quotation mark! ###"));
+                //just provide the error
+                words.Clear();
+                words.Add(new Word(message: "### ERROR: Missing associated ending quotation mark! ###"));
             }
             else if (text.Length > start)
             {
@@ -84,6 +101,61 @@ namespace Stein_Samples.Services.TextTokenizerService
             }
 
             return words;
+        }
+
+        /// <summary>
+        /// converts the Word list into the appropriate target format
+        /// </summary>
+        /// <param name="words"></param>
+        /// <param name="textInput"></param>
+        /// <returns></returns>
+        public IEnumerable<string> ConvertWordsToResult(IEnumerable<Word> words, string textInput)
+        {
+            IList<string> result = new List<string>();
+
+            var errorsExist = false;
+            foreach (var w in words.Where(w => !string.IsNullOrEmpty(w.Message)))
+            {
+                //Display any information/warning/error messages
+                result.Add(w.Message);
+                errorsExist = true;
+            }
+
+            if (errorsExist)
+            {
+                //do not provide any further output
+                return result;
+            }
+
+            //query all valid words
+            var content = words.Where(w => string.IsNullOrEmpty(w.Message)).ToList();
+
+            if (!string.IsNullOrEmpty(textInput))
+            {
+                result.Add(String.Format("This text has {0} words", content.Count()));
+            }
+
+            if (content.Any())
+            {
+                var maxLength = content.Max(w => w.Length);       //retrieve the maximum length
+
+                //query words by length
+                for (int l = 1; l <= maxLength; l++)
+                {
+                    var wordsQuery = content.Where(w => w.Length == l).Select(w => w.Value);
+                    if (!wordsQuery.Any())
+                    {
+                        //Uncomment if to output lenghts that do not occure
+                        //result.Add(String.Format("words with {0} letter did not occur", l));
+                    }
+                    else
+                    {
+                        result.Add(String.Format("words with {0} letters occured {1} times (words={2})", l, wordsQuery.Count(), String.Join(", ", wordsQuery)));
+                    }
+                }
+            }
+
+            return result;
         }
 
         /// <summary>

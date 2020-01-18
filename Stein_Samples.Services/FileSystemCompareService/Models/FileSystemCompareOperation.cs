@@ -1,7 +1,4 @@
 ﻿using Stein_Samples.Services.FileSystemCompareService.Helper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Stein_Samples.Services.FileSystemCompareService.Models
 {

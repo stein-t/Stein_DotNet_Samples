@@ -1,5 +1,4 @@
-﻿using Console_Tokenizer_Sample.Services;
-using Stein_Samples.Services.TextTokenizerService;
+﻿using Stein_Samples.Services.TextTokenizerService;
 using System;
 
 namespace Console_Tokenizer_Sample
@@ -11,7 +10,6 @@ namespace Console_Tokenizer_Sample
     {
         /// <summary>
         /// Reads a text from user input, tokenizes it, produces a custom output
-        /// see README.txt
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
@@ -19,18 +17,25 @@ namespace Console_Tokenizer_Sample
             //retrieve the associated service
             ITokenizerService _TokenizerService = new TokenizerService();
 
-            // put code above while loop that only needs to be executed once
+            Console.WriteLine("#### Text Tokenizer - Willkommen ####");
+
+            // iterate logic until user stops execution
             do
             {
-                Console.WriteLine("#### Text Tokenizer - Willkommen ####");
                 Console.Write("Enter some text: ");
                 string text = Console.ReadLine();
 
-                var result = _TokenizerService.Tokenize(text);      //retrive word tokens from the Tokenizer Service
-                OutputService.Output(result, text);                       //trigger custom output from the Output service
+                //retrieve result from the associated Service
+                var result = _TokenizerService.TokenizeAndConvert(text);
+
+                //just forward to console
+                foreach (var item in result)
+                {
+                    Console.WriteLine(item);
+                }
 
                 // get the user input for every iteration, allowing to exit at will
-                Console.WriteLine("Continue (y/n)?");
+                Console.Write("Continue [y|n]?");
                 text = Console.ReadLine();
                 if (text.Equals("n"))
                 {
