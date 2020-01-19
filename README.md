@@ -1,6 +1,6 @@
 # Stein_DotNet_Samples
 
-Simple Demonstation of the structure of service-based applications
+Simple Demonstration of the structure of service-based applications
 
 - WPF & Console Apps
 - MVVM Light Toolkit by Laurent Bugnion (http://www.mvvmlight.net/)
