@@ -191,8 +191,6 @@ namespace WPF_Samples.ViewModel
         /// <returns></returns>
         override protected string GetValidationError(string propertyName)
         {
-            //string error = null;
-
             switch (propertyName)
             {
                 case "Path1":
