@@ -30,11 +30,13 @@ namespace Stein_Samples.Services.FileSystemCompareService
                 Logger.Error(error);     //Log as Error
                 operations.Add(new FileSystemCompareOperation(message: error));
             }
-            error = this.CheckDirectoryExists(path2);
-            if (!string.IsNullOrEmpty(error))
-            {
-                Logger.Error(error);     //Log as Error
-                operations.Add(new FileSystemCompareOperation(message: error));
+            if (path1 != path2) {
+                error = this.CheckDirectoryExists(path2);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    Logger.Error(error);     //Log as Error
+                    operations.Add(new FileSystemCompareOperation(message: error));
+                }
             }
 
             if (path1 == path2)
@@ -143,7 +145,7 @@ namespace Stein_Samples.Services.FileSystemCompareService
         {
             if (!Directory.Exists(path))
             {
-                return string.Format("### Invalid or missing Destination '{0}'! ###", path);
+                return string.Format("### Invalid or missing Destination Path '{0}'! ###", path);
             }
             return null;
         }

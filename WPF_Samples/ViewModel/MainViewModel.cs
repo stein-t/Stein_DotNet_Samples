@@ -1,7 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
-using WPF_Samples.Services;
+using WPF_Infrastructure.Services;
 
 namespace WPF_Samples.ViewModel
 {

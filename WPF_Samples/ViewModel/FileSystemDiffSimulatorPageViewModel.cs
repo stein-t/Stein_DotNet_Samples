@@ -1,19 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using Stein_Samples.Services.FileSystemCompareService;
-using Stein_Samples.Services.FileSystemCompareService.Helper;
 using Stein_Samples.Services.FileSystemCompareService.Models;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Collections.Generic;using System.Windows;
+using WPF_Infrastructure.Helper;
 using WPF_Samples.Helper;
-using WPF_Samples.Services;
-using WPF_Samples.ViewModel.Helper;
-using WPF_Samples.Views;
 
 namespace WPF_Samples.ViewModel
 {

@@ -1,15 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Stein_Samples.Services.TextTokenizerService;
-using Stein_Samples.Services.TextTokenizerService.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using WPF_Samples.Services;
 
 namespace WPF_Samples.ViewModel
 {

@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace WPF_Samples.Services
+namespace WPF_Infrastructure.Services
 {
     /// <summary>
     /// Implementation of the IFrameNavigationService

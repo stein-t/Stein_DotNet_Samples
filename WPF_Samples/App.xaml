@@ -5,7 +5,8 @@
             
             <!-- embed some styles for label, textbox, etc.-->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="./Styles/MyStyles.xaml" />
+                <ResourceDictionary Source="/WPF_Infrastructure;component/Styles/MyStyles.xaml" />
+                <!--<ResourceDictionary Source="./Styles/MyStyles.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

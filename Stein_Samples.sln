@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Samples", "WPF_Samples\WPF_Samples.csproj", "{BAC29063-3723-4369-B6CA-241FBCF986FF}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_FileSystemDiffSimulator", "Console_FileSystemDiffSimulator\Console_FileSystemDiffSimulator.csproj", "{CD6BFD03-965A-4344-A596-F8F703BE28CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_Tokenizer_Sample", "Console_Tokenizer_Sample\Console_Tokenizer_Sample.csproj", "{88089D92-AA60-44F3-987D-2BF439D6A8AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Infrastructure", "WPF_Infrastructure\WPF_Infrastructure.csproj", "{AB283F1E-E48F-402E-9B78-57F2CA2F8333}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{88089D92-AA60-44F3-987D-2BF439D6A8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88089D92-AA60-44F3-987D-2BF439D6A8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88089D92-AA60-44F3-987D-2BF439D6A8AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB283F1E-E48F-402E-9B78-57F2CA2F8333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB283F1E-E48F-402E-9B78-57F2CA2F8333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB283F1E-E48F-402E-9B78-57F2CA2F8333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB283F1E-E48F-402E-9B78-57F2CA2F8333}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

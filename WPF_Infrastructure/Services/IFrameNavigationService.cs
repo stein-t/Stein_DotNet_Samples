@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Views;
 
-namespace WPF_Samples.Services
+namespace WPF_Infrastructure.Services
 {
     /// <summary>
     /// IFrameNavigationService Interface

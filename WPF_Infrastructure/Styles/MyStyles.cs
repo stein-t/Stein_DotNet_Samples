@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace WPF_Samples.Styles
+namespace WPF_Infrastructure.Styles
 {
     /// <summary>
     /// enhance styles with some UI interactions

@@ -5,7 +5,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interactivity;
 
-namespace WPF_Samples.Styles.Helper
+namespace WPF_Infrastructure.Styles.Helper
 {
     /// <summary>
     /// generic helper for supporting attached behaviours in style ressources

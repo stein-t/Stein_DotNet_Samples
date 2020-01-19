@@ -1,12 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WPF_Samples.ViewModel.Helper
+namespace WPF_Infrastructure.Helper
 {
     /// <summary>
     /// Abstract base class for your ViewModels to provide error handling per IDataErrorInfo implementation.

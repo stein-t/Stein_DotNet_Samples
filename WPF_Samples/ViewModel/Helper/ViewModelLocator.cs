@@ -17,7 +17,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Stein_Samples.Services.FileSystemCompareService;
 using Stein_Samples.Services.TextTokenizerService;
 using System;
-using WPF_Samples.Services;
+using WPF_Infrastructure.Services;
 
 namespace WPF_Samples.ViewModel.Helper
 {
