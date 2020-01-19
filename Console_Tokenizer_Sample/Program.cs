@@ -1,5 +1,6 @@
 ﻿using Stein_Samples.Services.TextTokenizerService;
 using System;
+using System.Collections.Generic;
 
 namespace Console_Tokenizer_Sample
 {
@@ -14,6 +15,9 @@ namespace Console_Tokenizer_Sample
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            //retrieve the logging instance
+            NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
             //retrieve the associated service
             ITokenizerService _TokenizerService = new TokenizerService();
 
@@ -25,8 +29,17 @@ namespace Console_Tokenizer_Sample
                 Console.Write("Enter some text: ");
                 string text = Console.ReadLine();
 
-                //retrieve result from the associated Service
-                var result = _TokenizerService.TokenizeAndConvert(text);
+                IEnumerable<string> result = null;
+
+                try {
+                    //retrieve result from the associated Service
+                    result = _TokenizerService.TokenizeAndConvert(text);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Fatal(ex.Message);       //Log Exception
+                    throw;
+                }
 
                 //just forward to console
                 foreach (var item in result)

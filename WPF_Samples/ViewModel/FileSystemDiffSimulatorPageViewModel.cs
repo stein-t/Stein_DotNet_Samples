@@ -24,7 +24,8 @@ namespace WPF_Samples.ViewModel
     {
         #region Fields
 
-        private readonly IFileSystemCompareService _FileSystemCompareService;
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();   //retrieve the logging instance
+        private readonly IFileSystemCompareService _FileSystemCompareService;                   //the associated services
 
         #endregion Fields
 
@@ -157,10 +158,14 @@ namespace WPF_Samples.ViewModel
             //clear
             Items = null;
 
+            Logger.Debug(string.Concat("Input 1: ", _Path1));         //Log Input1
+            Logger.Debug(string.Concat("Input 2: ", _Path2));         //Log Input2
+
             if (!IsValid())
             {
                 //add the associated message to be displayed by the result control
                 Items = new List<FileSystemCompareOperation>() { new FileSystemCompareOperation(message: this.Error) };
+                Logger.Error(this.Error);       //Log as Error
                 return;
             }
 
@@ -171,14 +176,14 @@ namespace WPF_Samples.ViewModel
             }
             catch (UnauthorizedAccessException ex)
             {
-                //Actually this should be delegated to a Logger or something
+                Logger.Error(ex.Message);       //Log Exception
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;     //here we can continue execution
             }
             catch (Exception ex)
             {
-                //Actually this should be delegated to a Logger or something
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Logger.Fatal(ex.Message);       //Log Exception
+                MessageBox.Show("Unexpected Error. Please contact support!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
             }
         }

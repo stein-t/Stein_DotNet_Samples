@@ -14,6 +14,9 @@ namespace Console_FileSystemDiffSimulator
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            //retrieve the logging instance
+            NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
             //retrieve the associated service
             IFileSystemCompareService _FileSystemCompareService = new FileSystemCompareService();
 
@@ -32,6 +35,9 @@ namespace Console_FileSystemDiffSimulator
                 Console.Write("Enter second Destination Path: ");
                 string _Path2 = Console.ReadLine();
 
+                Logger.Debug(string.Concat("Input 1: ", _Path1));         //Log Input1
+                Logger.Debug(string.Concat("Input 2: ", _Path2));         //Log Input2
+
                 try
                 {
                     //retrieve result from the associated Service
@@ -39,7 +45,13 @@ namespace Console_FileSystemDiffSimulator
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    Console.WriteLine(ex.Message);       //here we can continue execution                          
+                    Logger.Error(ex.Message);       //Log Exception as Error
+                    Console.WriteLine(ex.Message);  //here we can continue execution                          
+                }
+                catch (Exception ex)
+                {
+                    Logger.Fatal(ex.Message);       //Log Exception
+                    throw;
                 }
 
                 if (_Items != null)

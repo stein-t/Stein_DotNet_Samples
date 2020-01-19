@@ -11,6 +11,9 @@ namespace Stein_Samples.Services.FileSystemCompareService
     /// </summary>
     public class FileSystemCompareService : IFileSystemCompareService
     {
+        //retrieve the logging instance
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// the algorithm to compare filesystem sets to each other by returning the operations list
         /// </summary>
@@ -24,11 +27,13 @@ namespace Stein_Samples.Services.FileSystemCompareService
             var error = this.CheckDirectoryExists(path1);
             if (!string.IsNullOrEmpty(error))
             {
+                Logger.Error(error);     //Log as Error
                 operations.Add(new FileSystemCompareOperation(message: error));
             }
             error = this.CheckDirectoryExists(path2);
             if (!string.IsNullOrEmpty(error))
             {
+                Logger.Error(error);     //Log as Error
                 operations.Add(new FileSystemCompareOperation(message: error));
             }
 
@@ -36,6 +41,8 @@ namespace Stein_Samples.Services.FileSystemCompareService
             {
                 //add the associated message to the result list
                 operations.Add(new FileSystemCompareOperation(message: "### Both Destinations are equal! ###"));
+
+                Logger.Warn("Both Destinations are equal!");     //Log as Warning
             }
 
             //check if to continue
@@ -84,6 +91,8 @@ namespace Stein_Samples.Services.FileSystemCompareService
             {
                 //add the associated message to be displayed by the result control
                 operations.Add(new FileSystemCompareOperation(message: "### Both Destinations are equal! ###"));
+
+                Logger.Warn("Both Destinations are equal!");     //Log as Warn
             }
 
             return operations;

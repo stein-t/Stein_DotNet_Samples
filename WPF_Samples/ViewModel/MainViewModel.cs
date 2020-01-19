@@ -21,6 +21,7 @@ namespace WPF_Samples.ViewModel
     {
         #region Fields
 
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly IFrameNavigationService _navigationService;
 
         #endregion Fields
@@ -49,6 +50,8 @@ namespace WPF_Samples.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+
+            Logger.Debug("### Application started ###");
 
             _navigationService = navigationService;
             LoadedCommand = new RelayCommand(ExecuteLoaded);

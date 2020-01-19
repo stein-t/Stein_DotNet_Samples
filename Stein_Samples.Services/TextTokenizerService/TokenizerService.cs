@@ -10,6 +10,9 @@ namespace Stein_Samples.Services.TextTokenizerService
     /// </summary>
     public class TokenizerService : ITokenizerService
     {
+        //retrieve the logging instance
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Tokenizes the text and converts the word list into the appropriate format
         /// Instead the caller could also call both methods separately if to do some additional client-specific stuff with the Word list or format
@@ -32,10 +35,13 @@ namespace Stein_Samples.Services.TextTokenizerService
         /// <param name="text"></param>
         public IEnumerable<Word> Tokenize(string text)
         {
+            Logger.Debug(string.Concat("Input: ", text));         //Log text
+
             IList<Word> words = new List<Word>();
 
             if (string.IsNullOrEmpty(text))
             {
+                Logger.Error("No input provided!");     //Log as Error
                 words.Add(new Word(message: "### No input provided! ###"));
             }
 
@@ -94,6 +100,7 @@ namespace Stein_Samples.Services.TextTokenizerService
                 //just provide the error
                 words.Clear();
                 words.Add(new Word(message: "### ERROR: Missing associated ending quotation mark! ###"));
+                Logger.Error("Missing associated ending quotation mark");     //Log as Error
             }
             else if (text.Length > start)
             {
@@ -132,7 +139,9 @@ namespace Stein_Samples.Services.TextTokenizerService
 
             if (!string.IsNullOrEmpty(textInput))
             {
-                result.Add(String.Format("This text has {0} words", content.Count()));
+                var message = string.Format("This text has {0} words", content.Count());
+                Logger.Debug(string.Concat("Success:", message));         //Log success
+                result.Add(message);
             }
 
             if (content.Any())

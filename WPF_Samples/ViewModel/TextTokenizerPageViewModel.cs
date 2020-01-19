@@ -19,8 +19,9 @@ namespace WPF_Samples.ViewModel
     public class TextTokenizerPageViewModel : ViewModelBase
     {
         #region Fields
-
-        private readonly ITokenizerService _TokenizerService;
+        
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();   //retrieve the logging instance
+        private readonly ITokenizerService _TokenizerService;                                   //the associated services
 
         #endregion Fields
 
@@ -130,8 +131,8 @@ namespace WPF_Samples.ViewModel
             }
             catch (Exception ex)
             {
-                //Actually this should be delegated to a Logger or something
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Logger.Fatal(ex.Message);       //Log Exception
+                MessageBox.Show("Unexpected Error. Please contact support!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
             }
         }
