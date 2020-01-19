@@ -13,6 +13,7 @@
         <ResourceDictionary>
             <!-- reference converter -->
             <helper:StepConverter x:Key="StepConverter" />
+            <helper:MessageConverter x:Key="MessageConverter" />
         </ResourceDictionary>
     </Page.Resources>
     <Grid Margin="0 10 0 0">
@@ -51,7 +52,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Message}" />
+                        <TextBlock Text="{Binding Path=Message, Converter={StaticResource MessageConverter}}" />
                         <TextBlock Text="{Binding Path=Step, Converter={StaticResource StepConverter}}" Width="90" />
                         <TextBlock Text="{Binding Path=OperationText}" Width="150" />
                         <TextBlock Text="{Binding Path=Item.RelativePath}" />

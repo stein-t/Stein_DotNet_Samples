@@ -35,14 +35,17 @@ namespace Stein_Samples.Services.TextTokenizerService
         /// <param name="text"></param>
         public IEnumerable<Word> Tokenize(string text)
         {
-            Logger.Debug(string.Concat("Input: ", text));         //Log text
+            var message = string.Empty;                         //error message
+
+            Logger.Debug(string.Concat("Input: ", text));       //Log text
 
             IList<Word> words = new List<Word>();
 
             if (string.IsNullOrEmpty(text))
             {
-                Logger.Error("No input provided!");     //Log as Error
-                words.Add(new Word(message: "### No input provided! ###"));
+                message = "No input provided!";
+                Logger.Error(message);                          //Log as Error
+                words.Add(new Word(message: message));
             }
 
             //check if to continue
@@ -99,8 +102,10 @@ namespace Stein_Samples.Services.TextTokenizerService
             {
                 //just provide the error
                 words.Clear();
-                words.Add(new Word(message: "### ERROR: Missing associated ending quotation mark! ###"));
-                Logger.Error("Missing associated ending quotation mark");     //Log as Error
+
+                message = "Missing associated ending quotation mark!";
+                words.Add(new Word(message: message));
+                Logger.Error(message);                          //Log as Error
             }
             else if (text.Length > start)
             {
@@ -123,8 +128,8 @@ namespace Stein_Samples.Services.TextTokenizerService
             var errorsExist = false;
             foreach (var w in words.Where(w => !string.IsNullOrEmpty(w.Message)))
             {
-                //Display any information/warning/error messages
-                result.Add(w.Message);
+                //highlight any information/warning/error messages
+                result.Add(string.Concat("### ", w.Message, " ###"));
                 errorsExist = true;
             }
 

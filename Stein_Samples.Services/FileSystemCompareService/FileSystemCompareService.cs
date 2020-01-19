@@ -21,6 +21,8 @@ namespace Stein_Samples.Services.FileSystemCompareService
         /// <param name="path2"></param>
         public IEnumerable<FileSystemCompareOperation> CompareFolder(string path1, string path2)
         {
+            var message = string.Empty;                         //error message
+
             List<FileSystemCompareOperation> operations = new List<FileSystemCompareOperation>();
 
             //Valdiate paths
@@ -41,10 +43,9 @@ namespace Stein_Samples.Services.FileSystemCompareService
 
             if (path1 == path2)
             {
-                //add the associated message to the result list
-                operations.Add(new FileSystemCompareOperation(message: "### Both Destinations are equal! ###"));
-
-                Logger.Warn("Both Destinations are equal!");     //Log as Warning
+                message = "Both Destinations are equal!";
+                operations.Add(new FileSystemCompareOperation(message: message));
+                Logger.Warn(message);     //Log as Warning
             }
 
             //check if to continue
@@ -91,10 +92,9 @@ namespace Stein_Samples.Services.FileSystemCompareService
 
             if (!operations.Any())
             {
-                //add the associated message to be displayed by the result control
-                operations.Add(new FileSystemCompareOperation(message: "### Both Destinations are equal! ###"));
-
-                Logger.Warn("Both Destinations are equal!");     //Log as Warn
+                message = "Both Destinations are equal!";
+                operations.Add(new FileSystemCompareOperation(message: message));
+                Logger.Warn(message);     //Log as Warning
             }
 
             return operations;
@@ -145,7 +145,7 @@ namespace Stein_Samples.Services.FileSystemCompareService
         {
             if (!Directory.Exists(path))
             {
-                return string.Format("### Invalid or missing Destination Path '{0}'! ###", path);
+                return string.Format("Invalid or missing Destination Path '{0}'!", path);
             }
             return null;
         }
