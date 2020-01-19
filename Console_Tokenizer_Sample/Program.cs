@@ -18,10 +18,11 @@ namespace Console_Tokenizer_Sample
             //retrieve the logging instance
             NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
+            Logger.Info("Application started");
+            Console.WriteLine("#### Text Tokenizer - Willkommen ####");
+
             //retrieve the associated service
             ITokenizerService _TokenizerService = new TokenizerService();
-
-            Console.WriteLine("#### Text Tokenizer - Willkommen ####");
 
             // iterate logic until user stops execution
             do

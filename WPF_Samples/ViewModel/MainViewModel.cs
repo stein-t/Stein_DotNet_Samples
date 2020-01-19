@@ -50,7 +50,7 @@ namespace WPF_Samples.ViewModel
             ////    // Code runs "for real"
             ////}
 
-            Logger.Debug("### Application started ###");
+            Logger.Info("Application started");
 
             _navigationService = navigationService;
             LoadedCommand = new RelayCommand(ExecuteLoaded);

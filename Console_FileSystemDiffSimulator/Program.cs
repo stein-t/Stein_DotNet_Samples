@@ -20,9 +20,10 @@ namespace Console_FileSystemDiffSimulator
             //retrieve the associated service
             IFileSystemCompareService _FileSystemCompareService = new FileSystemCompareService();
 
-            IEnumerable<FileSystemCompareOperation> _Items;     //holds the result from the service
-
+            Logger.Info("Application started");
             Console.WriteLine("#### Filesystem Diff Simulator - Willkommen ####");
+
+            IEnumerable<FileSystemCompareOperation> _Items;     //holds the result from the service
 
             // iterate logic until user stops execution
             do
