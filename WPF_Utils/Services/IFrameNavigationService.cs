@@ -1,4 +1,6 @@
-﻿namespace WPF.Utils.Services
+﻿using System;
+
+namespace WPF.Utils.Services
 {
     /// <summary>
     /// Taken from then original GalaSoft.MvvmLight.Views
@@ -44,5 +46,7 @@
     public interface IFrameNavigationService : INavigationService
     {
         object Parameter { get; }
+
+        void Configure(string key, Uri pageType);
     }
 }

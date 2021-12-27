@@ -13,7 +13,6 @@
 */
 
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Samples.Services.FileSystemCompareService;
 using Samples.Services.TextTokenizerService;
 using System;
@@ -24,74 +23,61 @@ namespace WPF.Samples
 {
     /// <summary>
     /// This class responsible for building the service collection.
-    /// It contains static references to all the required services and view models and provides an entry point for the bindings.
+    /// It contains references for all viewmodels and provides an entry point for the bindings.
     /// </summary>
     public class ServiceLocator
     {
-        public ServiceLocator()
+        private static IServiceProvider ConfigureServices()
         {
-            var services = new ServiceCollection();
-
-            // Services
-            services
+            return new ServiceCollection()
+                // Services
+                .AddSingleton<IFrameNavigationService, FrameNavigationService>()
                 .AddSingleton<IFileSystemCompareService, FileSystemCompareService>()
-                .AddSingleton<ITokenizerService, TokenizerService>();
-
-            // Viewmodels
-            services
+                .AddSingleton<ITokenizerService, TokenizerService>()
+                // Viewmodels
                 .AddTransient<MainViewModel>()
                 .AddTransient<HomePageViewModel>()
                 .AddTransient<FileSystemDiffSimulatorPageViewModel>()
-                .AddTransient<TextTokenizerPageViewModel>();
-
-            SetupNavigation(services);
-
-            Ioc.Default.ConfigureServices(services.BuildServiceProvider());
+                .AddTransient<TextTokenizerPageViewModel>()
+                .BuildServiceProvider();
         }
 
-        /// <summary>
-        /// Configure and register NavigationService
-        /// </summary>
-        private static void SetupNavigation(IServiceCollection services)
+        private readonly IServiceProvider _serviceProvider;
+
+        public ServiceLocator()
         {
-            var navigationService = new FrameNavigationService();
-
-            navigationService.Configure("Home", new Uri("../Views/HomePage.xaml", UriKind.Relative));
-            navigationService.Configure("TextTokenizer", new Uri("../Views/TextTokenizerPage.xaml", UriKind.Relative));
-            navigationService.Configure("FileSystemDiffSimulator", new Uri("../Views/FileSystemDiffSimulatorPage.xaml", UriKind.Relative));
-
-            services.AddSingleton<IFrameNavigationService>(navigationService);
+            _serviceProvider = ConfigureServices();
         }
 
-        public static MainViewModel Main
+        public MainViewModel Main
         {
             get
             {
-                return Ioc.Default.GetService<MainViewModel>();
+                return _serviceProvider.GetService<MainViewModel>();
             }
         }
 
-        public static FileSystemDiffSimulatorPageViewModel FileSystemDiffSimulator
+        public FileSystemDiffSimulatorPageViewModel FileSystemDiffSimulator
         {
             get
             {
-                return Ioc.Default.GetService<FileSystemDiffSimulatorPageViewModel>();
+                return _serviceProvider.GetService<FileSystemDiffSimulatorPageViewModel>();
             }
         }
 
-        public static TextTokenizerPageViewModel TextTokenizer
+        public TextTokenizerPageViewModel TextTokenizer
         {
             get
             {
-                return Ioc.Default.GetService<TextTokenizerPageViewModel>();
+                return _serviceProvider.GetService<TextTokenizerPageViewModel>();
             }
         }
 
-        public static HomePageViewModel Home
+        public HomePageViewModel Home
         {
             get
             {
-                return Ioc.Default.GetService<HomePageViewModel>();
+                return _serviceProvider.GetService<HomePageViewModel>();
             }
         }
 

@@ -38,7 +38,7 @@ namespace WPF.Samples.ViewModel
             {
                 if (value != _Path1)
                 {
-                    _Path1 = WPF.Samples.Helper.Utils.CheckPathEnding(value);
+                    _Path1 = Helper.Utils.CheckPathEnding(value);
                     OnPropertyChanged();
                 }
             }
@@ -58,7 +58,7 @@ namespace WPF.Samples.ViewModel
             {
                 if (value != _Path2)
                 {
-                    _Path2 = WPF.Samples.Helper.Utils.CheckPathEnding(value);
+                    _Path2 = Helper.Utils.CheckPathEnding(value);
                     OnPropertyChanged();
                 }
             }

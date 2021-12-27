@@ -1,5 +1,5 @@
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using WPF.Utils.Services;
 
 namespace WPF.Samples.ViewModel
@@ -7,7 +7,7 @@ namespace WPF.Samples.ViewModel
     /// <summary>
     /// This class contains properties that the main View can data bind to.
     /// </summary>
-    public class MainViewModel : ObservableRecipient
+    public class MainViewModel
     {
         #region Fields
 
@@ -28,7 +28,8 @@ namespace WPF.Samples.ViewModel
         {
             Logger.Info("Application started");
 
-            _navigationService = navigationService;
+            _navigationService = SetupNavigation(navigationService);
+
             LoadedCommand = new RelayCommand(ExecuteLoaded);
         }
 
@@ -42,5 +43,16 @@ namespace WPF.Samples.ViewModel
         }
 
         #endregion CommandHandler
+
+        /// <summary>
+        /// Configure and register NavigationService
+        /// </summary>
+        private static IFrameNavigationService SetupNavigation(IFrameNavigationService navigationService)
+        {
+            navigationService.Configure("Home", new Uri("../Views/HomePage.xaml", UriKind.Relative));
+            navigationService.Configure("TextTokenizer", new Uri("../Views/TextTokenizerPage.xaml", UriKind.Relative));
+            navigationService.Configure("FileSystemDiffSimulator", new Uri("../Views/FileSystemDiffSimulatorPage.xaml", UriKind.Relative));
+            return navigationService;
+        }
     }
 }
