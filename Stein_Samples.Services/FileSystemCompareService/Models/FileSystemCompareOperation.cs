@@ -8,7 +8,7 @@ namespace Samples.Services.FileSystemCompareService.Models
     public class FileSystemCompareOperation
     {
         /// <summary>
-        /// Helper to display Error/Warnings/Information messages in the target result control
+        /// Helper to display Error/Warnings/Information messages in the target UI control
         /// </summary>
         public string Message { get; set; }
 
@@ -36,7 +36,7 @@ namespace Samples.Services.FileSystemCompareService.Models
         {
             Step = step;
             Operation = operation;
-            Item = item ?? new FileSystemItem(FileType.None, null);     //initialize empty object
+            Item = item ?? new FileSystemItem(FileType.None, null);     // initialize empty object
             Message = message;
 
             OperationText = operation == FileOperation.None ? string.Empty : string.Concat(operation.ToString().ToUpper(), " ", item.Type.ToString().ToUpper());

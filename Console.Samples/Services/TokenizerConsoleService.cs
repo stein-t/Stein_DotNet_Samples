@@ -38,7 +38,7 @@ namespace Console.Samples.Services
                 }
                 catch (Exception ex)
                 {
-                    Logger.Fatal(ex.Message);       //Log Exception
+                    Logger.Fatal(ex.Message);
                     throw;
                 }
 

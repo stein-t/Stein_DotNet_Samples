@@ -30,7 +30,7 @@ namespace Console.Samples.ServiceLocator
         {
             get
             {
-                return _serviceProvider?.GetService<TokenizerConsoleService>();
+                return _serviceProvider.GetService<TokenizerConsoleService>();
             }
         }
 
@@ -38,7 +38,7 @@ namespace Console.Samples.ServiceLocator
         {
             get
             {
-                return _serviceProvider?.GetService<FileSystemCompareConsoleService>();
+                return _serviceProvider.GetService<FileSystemCompareConsoleService>();
             }
         }
     }

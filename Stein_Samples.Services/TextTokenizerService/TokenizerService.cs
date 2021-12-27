@@ -10,7 +10,6 @@ namespace Samples.Services.TextTokenizerService
     /// </summary>
     public class TokenizerService : ITokenizerService
     {
-        //retrieve the logging instance
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
@@ -35,39 +34,38 @@ namespace Samples.Services.TextTokenizerService
         /// <param name="text"></param>
         public IEnumerable<Word> Tokenize(string text)
         {
-            var message = string.Empty;                         //error message
-
-            Logger.Debug(string.Concat("Input: ", text));       //Log text
+            Logger.Debug(string.Concat("Input: ", text));
 
             IList<Word> words = new List<Word>();
 
+            string message;
             if (string.IsNullOrEmpty(text))
             {
                 message = "No input provided!";
-                Logger.Error(message);                          //Log as Error
+                Logger.Error(message);
                 words.Add(new Word(message: message));
             }
 
-            //check if to continue
+            // check if to continue
             if (words.Any())
             {
                 return words;
             }
 
-            int start = 0;                      //holds the starting position of a potential word or quotation sequence
-            char? isStartedQuotation = null;    //specifies if a new quotation sequence started by remembering the single or double quote sign
+            int start = 0;                      // holds the starting position of a potential word or quotation sequence
+            char? isStartedQuotation = null;    // specifies if a new quotation sequence started by remembering the single or double quote sign
 
-            //iterate text
+            // iterate text
             for (int pos = 0; pos < text.Length; pos++)
             {
                 var c = text[pos];  //remember the char at the current position
 
-                //test that no quotation sequence started
+                // test that no quotation sequence started
                 if (isStartedQuotation == null) {
-                    //test for latin char
+                    // test for latin char
                     if (!IsLatinLetter(c))
                     {
-                        //test for number
+                        // test for number
                         if (!IsNumber(c))
                         {
                             if (pos > start) {
@@ -78,12 +76,12 @@ namespace Samples.Services.TextTokenizerService
                     }
                 }
 
-                //test for quotation marks
+                // test for quotation marks
                 if (IsQuotationMark(c, isStartedQuotation))
                 {
                     if (isStartedQuotation != null)
                     {
-                        //we reached the end of a quotation area
+                        // we reached the end of a quotation area
                         if (pos > start) {
                             words.Add(new Word(value: text.Substring(start, pos - start), length: pos - start));
                         }
@@ -91,7 +89,7 @@ namespace Samples.Services.TextTokenizerService
                     }
                     else
                     {
-                        //we start a new quotation area
+                        // we start a new quotation area
                         isStartedQuotation = c;
                     }
                     start = pos + 1;
@@ -99,13 +97,12 @@ namespace Samples.Services.TextTokenizerService
             }
 
             if (isStartedQuotation != null)
-            {
-                //just provide the error
-                words.Clear();
+            {                
+                words.Clear();  // just provide the error
 
                 message = "Missing associated ending quotation mark!";
                 words.Add(new Word(message: message));
-                Logger.Error(message);                          //Log as Error
+                Logger.Error(message);
             }
             else if (text.Length > start)
             {
@@ -128,39 +125,39 @@ namespace Samples.Services.TextTokenizerService
             var errorsExist = false;
             foreach (var w in words.Where(w => !string.IsNullOrEmpty(w.Message)))
             {
-                //highlight any information/warning/error messages
+                // highlight any information/warning/error messages
                 result.Add(string.Concat("### ", w.Message, " ###"));
                 errorsExist = true;
             }
 
             if (errorsExist)
             {
-                //do not provide any further output
+                // do not provide any further output
                 return result;
             }
 
-            //query all valid words
+            // query all valid words
             var content = words.Where(w => string.IsNullOrEmpty(w.Message)).ToList();
 
             if (!string.IsNullOrEmpty(textInput))
             {
                 var message = string.Format("This text has {0} words", content.Count());
-                Logger.Debug(string.Concat("Success:", message));         //Log success
+                Logger.Debug(string.Concat("Success:", message));
                 result.Add(message);
             }
 
             if (content.Any())
             {
-                var maxLength = content.Max(w => w.Length);       //retrieve the maximum length
+                var maxLength = content.Max(w => w.Length);       // retrieve the maximum length
 
-                //query words by length
+                // query words by length
                 for (int l = 1; l <= maxLength; l++)
                 {
                     var wordsQuery = content.Where(w => w.Length == l).Select(w => w.Value);
                     if (!wordsQuery.Any())
                     {
-                        //Uncomment if to output lenghts that do not occure
-                        //result.Add(String.Format("words with {0} letter did not occur", l));
+                        // uncomment if to output lenghts that do not occure
+                        // result.Add(String.Format("words with {0} letter did not occur", l));
                     }
                     else
                     {
@@ -202,7 +199,7 @@ namespace Samples.Services.TextTokenizerService
             if (charIsQuotationMark) {
                 if (quotationStart != null)
                 {
-                    //check if c matches quotationStart
+                    // check if c matches quotationStart
                     return c == quotationStart;
                 }
                 return true;

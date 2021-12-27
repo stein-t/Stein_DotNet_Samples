@@ -13,7 +13,7 @@ namespace WPF.Samples.Helper
         {
             if (value is int)
             {
-                //Just add a dot "." after the row number
+                // just add a dot "." after the row number
                 return string.Concat(value.ToString(), ".");
             }
             return value;
@@ -34,7 +34,7 @@ namespace WPF.Samples.Helper
         {
             if (value is string)
             {
-                //Just post and prefix (highlight) the message
+                // just post and prefix (highlight) the message
                 return string.Concat("### ", value, " ###");    
             }
             return value;

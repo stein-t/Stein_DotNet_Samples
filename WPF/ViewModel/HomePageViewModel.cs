@@ -17,32 +17,19 @@ namespace WPF.Samples.ViewModel
 
         #region Properties
 
-        /// <summary>
-        /// Window Title
-        /// </summary>
         public string WindowTitle { get; }
 
         #endregion Properties
 
 
         #region Commands
-        /// <summary>
-        /// Command for triggering the NavigateToTextTokenizer Page action
-        /// </summary>
-        public RelayCommand NavigateToTextTokenizerCommand { get; set; }
 
-        /// <summary>
-        /// Command for NavigateToFileSystemDiff Page
-        /// </summary>
+        public RelayCommand NavigateToTextTokenizerCommand { get; set; }
         public RelayCommand NavigateToFileSystemDiffCommand { get; set; }
 
         #endregion Commands
 
 
-        /// <summary>
-        /// Initializes a new instance of the HomeViewModel class.
-        /// Inject the IFrameNavigationService Dependency
-        /// </summary>
         public HomePageViewModel(IFrameNavigationService navigationService)
         {
             WindowTitle = "Stein WPF.Samples Samples - Home";
@@ -58,13 +45,11 @@ namespace WPF.Samples.ViewModel
 
         private void ExecuteNavigateToTextTokenizer()
         {
-            //Navigate to Page
             _navigationService.NavigateTo("TextTokenizer");
         }
 
         private void ExecuteNavigateToFileSystemDiff()
         {
-            //Navigate to Page
             _navigationService.NavigateTo("FileSystemDiffSimulator");
         }
 

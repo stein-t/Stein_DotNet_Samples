@@ -15,20 +15,16 @@ namespace WPF.Samples.ViewModel
     {
         #region Fields
 
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();   //retrieve the logging instance
-        private readonly IFileSystemCompareService _FileSystemCompareService;                   //the associated services
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();   // retrieve the logging instance
+        private readonly IFileSystemCompareService _FileSystemCompareService;                   // the associated services
 
         #endregion Fields
 
 
         #region Properties
 
-        /// <summary>
-        /// Window Title
-        /// </summary>
         public string WindowTitle { get; }
 
-        private string _Path1;
         /// <summary>
         /// first folder destination
         /// </summary>
@@ -47,8 +43,8 @@ namespace WPF.Samples.ViewModel
                 }
             }
         }
+        private string _Path1;
 
-        private string _Path2;
         /// <summary>
         /// second folder destination
         /// </summary>
@@ -67,8 +63,8 @@ namespace WPF.Samples.ViewModel
                 }
             }
         }
+        private string _Path2;
 
-        private IEnumerable<FileSystemCompareOperation> _Items;
         /// <summary>
         /// Binded items result list
         /// </summary>
@@ -87,36 +83,26 @@ namespace WPF.Samples.ViewModel
                 }
             }
         }
+        private IEnumerable<FileSystemCompareOperation> _Items;
 
         #endregion Properties
 
 
         #region Commands
 
-        /// <summary>
-        /// Command for triggering the DIFF action
-        /// </summary>
         public RelayCommand CompareCommand { get; set; }
-
-        /// <summary>
-        /// Command for refreshing the GUI 
-        /// </summary>
         public RelayCommand ClearCommand { get; set; }
 
         #endregion Commands
 
 
-        /// <summary>
-        /// Initializes a new instance of the FileSystemDiffViewModel class.
-        /// Inject IFileSystemCompareService
-        /// </summary>
         public FileSystemDiffSimulatorPageViewModel(IFileSystemCompareService fileSystemCompareService)
         {
             WindowTitle = "Stein WPF.Samples Samples - Filesystem Diff Simulator";
 
             _FileSystemCompareService = fileSystemCompareService;
 
-            //specify properties that are to be validated
+            // specify properties that are to be validated
             ValidatedProperties = new string[] { "Path1", "Path2" };
 
             CompareCommand = new RelayCommand(ExecuteCompare);
@@ -142,35 +128,34 @@ namespace WPF.Samples.ViewModel
         /// </summary>
         private void ExecuteCompare()
         {
-            //clear
-            Items = null;
+            Items = null;       // clear result
 
-            Logger.Debug(string.Concat("Input 1: ", _Path1));         //Log Input1
-            Logger.Debug(string.Concat("Input 2: ", _Path2));         //Log Input2
+            Logger.Debug(string.Concat("Input 1: ", _Path1));
+            Logger.Debug(string.Concat("Input 2: ", _Path2));
 
             if (!IsValid())
             {
-                //add the associated message to be displayed by the result control
+                // add the associated message to be displayed by the result control
                 Items = new List<FileSystemCompareOperation>() { new FileSystemCompareOperation(message: this.Error) };
-                Logger.Error(this.Error);       //Log as Error
+                Logger.Error(this.Error);
                 return;
             }
 
             try
             {
-                //retrieve result from the associated Service
+                // retrieve result from the associated Service
                 Items = _FileSystemCompareService.CompareFolder(_Path1, _Path2);
             }
             catch (UnauthorizedAccessException ex)
             {
-                Logger.Error(ex.Message);       //Log Exception
+                Logger.Error(ex.Message);
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;     //here we can continue execution
+                return;     // here we can continue execution
             }
             catch (Exception ex)
             {
-                Logger.Fatal(ex.Message);       //Log Exception
-                MessageBox.Show("Unexpected Error. Please contact support!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Logger.Fatal(ex.Message);
+                MessageBox.Show("Critical Error!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
             }
         }

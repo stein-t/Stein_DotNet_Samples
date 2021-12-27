@@ -14,20 +14,16 @@ namespace WPF.Samples.ViewModel
     {
         #region Fields
         
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();   //retrieve the logging instance
-        private readonly ITokenizerService _TokenizerService;                                   //the associated services
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();   // retrieve the logging instance
+        private readonly ITokenizerService _TokenizerService;                                   // the associated services
 
         #endregion Fields
 
 
         #region Properties
 
-        /// <summary>
-        /// Window Title
-        /// </summary>
         public string WindowTitle { get; }
 
-        private string _Text;
         /// <summary>
         /// Text Input
         /// </summary>
@@ -46,8 +42,8 @@ namespace WPF.Samples.ViewModel
                 }
             }
         }
+        private string _Text;
 
-        private IEnumerable<string> _Items;
         /// <summary>
         /// Binded items result list
         /// </summary>
@@ -66,29 +62,19 @@ namespace WPF.Samples.ViewModel
                 }
             }
         }
+        private IEnumerable<string> _Items;
 
         #endregion Properties
 
 
         #region Commands
 
-        /// <summary>
-        /// Command for triggering the Tokenizer action
-        /// </summary>
         public RelayCommand TokenizeCommand { get; set; }
-
-        /// <summary>
-        /// Command for refreshing the GUI 
-        /// </summary>
         public RelayCommand ClearCommand { get; set; }
 
         #endregion Commands
 
 
-        /// <summary>
-        /// Initializes a new instance of the TextTokenizerPageViewModel class.
-        /// Inject the ITokenizerService Dependency
-        /// </summary>
         public TextTokenizerPageViewModel(ITokenizerService tokenizerService)
         {
             WindowTitle = "Stein WPF.Samples Samples - Text Tokenizer";
@@ -114,19 +100,18 @@ namespace WPF.Samples.ViewModel
         /// trigger the Tokenizing calculation
         /// </summary>
         private void ExecuteTokenize()
-        {
-            //clear
-            Items = null;
+        {            
+            Items = null;       // clear result
 
             try
             {
-                //retrieve result from the associated Service
+                // retrieve result from the associated Service
                 Items = _TokenizerService.TokenizeAndConvert(_Text);
             }
             catch (Exception ex)
             {
-                Logger.Fatal(ex.Message);       //Log Exception
-                MessageBox.Show("Unexpected Error. Please contact support!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Logger.Fatal(ex.Message);
+                MessageBox.Show("Critical Error!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
             }
         }

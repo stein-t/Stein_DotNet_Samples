@@ -15,7 +15,7 @@ namespace WPF.Samples.Helper
                 return path;
             }
 
-            if (path[path.Length - 1] != '\\')
+            if (path[^1] != '\\')
             {
                 path = string.Concat(path, '\\');
             }

@@ -35,8 +35,8 @@ namespace Console.Samples.Services
                 System.Console.Write("Enter second Destination Path: ");
                 string _Path2 = System.Console.ReadLine();
 
-                Logger.Debug(string.Concat("Input 1: ", _Path1));         // Log Input1
-                Logger.Debug(string.Concat("Input 2: ", _Path2));         // Log Input2
+                Logger.Debug(string.Concat("Input 1: ", _Path1));
+                Logger.Debug(string.Concat("Input 2: ", _Path2));
 
                 IEnumerable<FileSystemCompareOperation> result = null;
                 try
@@ -55,7 +55,6 @@ namespace Console.Samples.Services
                     throw;
                 }
 
-                //provide console output of the result items
                 Output(result);
 
                 // get the user input for every iteration, allowing to exit at will
@@ -70,7 +69,7 @@ namespace Console.Samples.Services
         }
 
         /// <summary>
-        /// Prepare custom Console Output
+        /// provide formatted output
         /// </summary>
         /// <param name="words"></param>
         private static void Output(IEnumerable<FileSystemCompareOperation> items)
@@ -79,7 +78,7 @@ namespace Console.Samples.Services
 
             foreach (var item in items.Where(x => !string.IsNullOrEmpty(x.Message)))
             {
-                // display any information/warning/error messages
+                // display any error messages
                 System.Console.WriteLine(item.Message);
             }
 

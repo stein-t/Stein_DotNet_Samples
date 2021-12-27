@@ -25,25 +25,24 @@ namespace Console.Samples
                 var input = System.Console.ReadKey(true);
 
                 // retrieve the associated service and start it or quit
+                IConsoleService service = null;
                 switch (input.Key)
                 {
                     case ConsoleKey.Q:
-                        break;
+                        return;
                     case ConsoleKey.D1:
-                        IConsoleService tokenizerService = serviceLocator.Tokenizer;
-                        tokenizerService.Start();
+                        service = serviceLocator.Tokenizer;
                         break;
                     case ConsoleKey.D2:
-                        IConsoleService filesystemDiffSimulator = serviceLocator.FilesystemDiffSimulator;
-                        filesystemDiffSimulator.Start();
+                        service = serviceLocator.FilesystemDiffSimulator;
                         break;
                     default:
                         System.Console.WriteLine("### Wrong Input! ###");
                         break;
                 }
-                if (input.Key == ConsoleKey.Q)
+                if (service != null)
                 {
-                    break;
+                    service.Start();
                 }
             }
             while (true);

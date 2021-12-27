@@ -27,9 +27,6 @@ namespace WPF.Samples.ViewModel.Helper
     /// </summary>
     public class ViewModelLocator
     {
-        /// <summary>
-        /// Initializes a new instance of the ViewModelLocator class.
-        /// </summary>
         public ViewModelLocator()
         {
             var services = new ServiceCollection();

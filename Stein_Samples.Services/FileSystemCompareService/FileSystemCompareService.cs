@@ -11,7 +11,6 @@ namespace Samples.Services.FileSystemCompareService
     /// </summary>
     public class FileSystemCompareService : IFileSystemCompareService
     {
-        //retrieve the logging instance
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
@@ -21,22 +20,22 @@ namespace Samples.Services.FileSystemCompareService
         /// <param name="path2"></param>
         public IEnumerable<FileSystemCompareOperation> CompareFolder(string path1, string path2)
         {
-            var message = string.Empty;                         //error message
+            var message = string.Empty;                         // error message
 
             List<FileSystemCompareOperation> operations = new List<FileSystemCompareOperation>();
 
-            //Valdiate paths
+            // Valdiate paths
             var error = this.CheckDirectoryExists(path1);
             if (!string.IsNullOrEmpty(error))
             {
-                Logger.Error(error);     //Log as Error
+                Logger.Error(error);
                 operations.Add(new FileSystemCompareOperation(message: error));
             }
             if (path1 != path2) {
                 error = this.CheckDirectoryExists(path2);
                 if (!string.IsNullOrEmpty(error))
                 {
-                    Logger.Error(error);     //Log as Error
+                    Logger.Error(error);
                     operations.Add(new FileSystemCompareOperation(message: error));
                 }
             }
@@ -45,7 +44,7 @@ namespace Samples.Services.FileSystemCompareService
             {
                 message = "Both Destinations are equal!";
                 operations.Add(new FileSystemCompareOperation(message: message));
-                Logger.Warn(message);     //Log as Warning
+                Logger.Warn(message);
             }
 
             //check if to continue
@@ -54,11 +53,11 @@ namespace Samples.Services.FileSystemCompareService
                 return operations;
             }
 
-            //identify filesystem sets of both destinations
+            // identify filesystem sets of both destinations
             IEnumerable<FileSystemItem> files1 = GetFiles(path1);
             IEnumerable<FileSystemItem> files2 = GetFiles(path2);
 
-            //identify common items
+            // identify common items
             var equalsQuery = (
                 from f1 in files1
                 join f2 in files2 on f1.RelativePath equals f2.RelativePath
@@ -66,26 +65,26 @@ namespace Samples.Services.FileSystemCompareService
             );
 
             var i = 1;
-            //insert items to be deleted by Linq LEFT JOIN
+            // insert items to be deleted by Linq LEFT JOIN
             operations.AddRange(
                 (
                     from f in files2
                     join e in equalsQuery on f.RelativePath equals e.RelativePath into result
                     from r in result.DefaultIfEmpty()
                     where r is null
-                    orderby f.Type descending, f.RelativePath          //Delete FILE first
+                    orderby f.Type descending, f.RelativePath          // Delete FILE first
                     select new FileSystemCompareOperation(i++, FileOperation.Delete, f)
                 )
             );
 
-            //insert items to be created by Linq LEFT JOIN
+            // insert items to be created by Linq LEFT JOIN
             operations.AddRange(
                 (
                     from f in files1
                     join e in equalsQuery on f.RelativePath equals e.RelativePath into result
                     from r in result.DefaultIfEmpty()
                     where r is null
-                    orderby f.Type, f.RelativePath                      //Create DIRECTORY first
+                    orderby f.Type, f.RelativePath                      // Create DIRECTORY first
                     select new FileSystemCompareOperation(i++, FileOperation.Create, f)
                 )
             );
@@ -94,7 +93,7 @@ namespace Samples.Services.FileSystemCompareService
             {
                 message = "Both Destinations are equal!";
                 operations.Add(new FileSystemCompareOperation(message: message));
-                Logger.Warn(message);     //Log as Warning
+                Logger.Warn(message);
             }
 
             return operations;
@@ -108,27 +107,27 @@ namespace Samples.Services.FileSystemCompareService
         /// <returns></returns>
         public IEnumerable<FileSystemItem> GetFiles(string folder)
         {
-            //we process file structure iteration by using a queue
+            // we process file structure iteration by using a queue
             Queue<string> queue = new Queue<string>();
             queue.Enqueue(folder);
 
             string path;
 
-            //recursive loop
+            // recursive loop
             while (queue.Count > 0)
             {
                 path = queue.Dequeue();
 
-                //Identify Directories
+                // Identify Directories
                 foreach (string dir in Directory.GetDirectories(path))
                 {
                     yield return new FileSystemItem(FileType.Directory, dir.Replace(folder, ""));
 
-                    //search subdirectories
+                    // search subdirectories
                     queue.Enqueue(dir);
                 }
 
-                //Identify Files
+                // Identify Files
                 foreach (string file in Directory.GetFiles(path))
                 {
                     yield return new FileSystemItem(FileType.File, file.Replace(folder, ""));

@@ -6,7 +6,7 @@
     public class Word
     {
         /// <summary>
-        /// Helper to display Error/Warnings/Information messages in the target result control
+        /// Helper to display Error/Warnings/Information messages in the target UI control
         /// </summary>
         public string Message { get; set; }
 

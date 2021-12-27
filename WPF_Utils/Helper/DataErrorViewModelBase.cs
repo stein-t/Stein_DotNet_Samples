@@ -5,7 +5,7 @@ namespace WPF.Utils.Helper
 {
     /// <summary>
     /// Abstract base class for your ViewModels to provide error handling per IDataErrorInfo implementation.
-    /// Inherits MVVM Light features like ICommand implementation, Messenger, EventToCommand and much more. See http://www.galasoft.ch/mvvm
+    /// Inherits MVVM Toolkit features, see https://docs.microsoft.com/en-us/windows/communitytoolkit/mvvm/observablerecipient
     /// </summary>
     public abstract class DataErrorViewModelBase : ObservableRecipient, IDataErrorInfo
     {
