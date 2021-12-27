@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Services", "Stein_Samples.Services\Samples.Services.csproj", "{1FEAFA59-4E58-4CC6-B994-9F624CD44425}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Services", "Samples.Services\Samples.Services.csproj", "{1FEAFA59-4E58-4CC6-B994-9F624CD44425}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Utils", "WPF_Utils\WPF.Utils.csproj", "{47620D46-AB23-4911-B662-E68F91B0B409}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Utils", "WPF.Utils\WPF.Utils.csproj", "{47620D46-AB23-4911-B662-E68F91B0B409}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Samples", "WPF\WPF.Samples.csproj", "{74BFACF2-0ADE-4F97-97E3-B7AF782217BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Samples", "WPF.Samples\WPF.Samples.csproj", "{74BFACF2-0ADE-4F97-97E3-B7AF782217BE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console.Samples", "Console.Samples\Console.Samples.csproj", "{DBB4E3F4-B9E7-423E-876F-4E4987A63CB9}"
 EndProject
