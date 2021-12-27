@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Utils", "WPF_Utils\WPF.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Samples", "WPF\WPF.Samples.csproj", "{74BFACF2-0ADE-4F97-97E3-B7AF782217BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console.Samples", "Console.Samples\Console.Samples.csproj", "{DBB4E3F4-B9E7-423E-876F-4E4987A63CB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{74BFACF2-0ADE-4F97-97E3-B7AF782217BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74BFACF2-0ADE-4F97-97E3-B7AF782217BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74BFACF2-0ADE-4F97-97E3-B7AF782217BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB4E3F4-B9E7-423E-876F-4E4987A63CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB4E3F4-B9E7-423E-876F-4E4987A63CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB4E3F4-B9E7-423E-876F-4E4987A63CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB4E3F4-B9E7-423E-876F-4E4987A63CB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
