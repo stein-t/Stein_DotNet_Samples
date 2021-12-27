@@ -7,9 +7,9 @@
              d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <ResourceDictionary>
-            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:WPF.Samples.ViewModel.Helper" />
+            <vm:ServiceLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:WPF.Samples" />
 
-            <!-- embed some styles for label, textbox, etc.-->
+            <!-- embed required styles for label, textbox, etc.-->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/WPF.Utils;component/Styles/MyStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>

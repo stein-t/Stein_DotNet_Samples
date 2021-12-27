@@ -6,6 +6,9 @@ using System;
 
 namespace Console.Samples.ServiceLocator
 {
+    /// <summary>
+    /// This class is responsible for building the service collection and contains references to all required services.
+    /// </summary>
     public class ServiceLocator : IServiceLocator
     {
         public static IServiceLocator Create()

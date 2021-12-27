@@ -1,7 +1,7 @@
 /*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:WPF.Samples.ViewModel.Helper"
+      <vm:ServiceLocator xmlns:vm="clr-namespace:WPF.Samples.ViewModel.Helper"
                            x:Key="Locator" />
   </Application.Resources>
   
@@ -17,17 +17,18 @@ using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Samples.Services.FileSystemCompareService;
 using Samples.Services.TextTokenizerService;
 using System;
+using WPF.Samples.ViewModel;
 using WPF.Utils.Services;
 
-namespace WPF.Samples.ViewModel.Helper
+namespace WPF.Samples
 {
     /// <summary>
-    /// This class contains static references to all the view models in the
-    /// application and provides an entry point for the bindings.
+    /// This class responsible for building the service collection.
+    /// It contains static references to all the required services and view models and provides an entry point for the bindings.
     /// </summary>
-    public class ViewModelLocator
+    public class ServiceLocator
     {
-        public ViewModelLocator()
+        public ServiceLocator()
         {
             var services = new ServiceCollection();
 
@@ -61,7 +62,6 @@ namespace WPF.Samples.ViewModel.Helper
 
             services.AddSingleton<IFrameNavigationService>(navigationService);
         }
-
 
         public static MainViewModel Main
         {
