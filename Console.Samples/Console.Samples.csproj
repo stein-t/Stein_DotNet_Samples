@@ -13,4 +13,10 @@
     <ProjectReference Include="..\Stein_Samples.Services\Samples.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
