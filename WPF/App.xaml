@@ -11,7 +11,7 @@
 
             <!-- embed some styles for label, textbox, etc.-->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/WPF_Utils;component/Styles/MyStyles.xaml" />
+                <ResourceDictionary Source="/WPF.Utils;component/Styles/MyStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

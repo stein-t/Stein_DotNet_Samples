@@ -8,12 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="NLog" Version="4.7.13" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Stein_Samples.Services\Stein_Samples.Services.csproj" />
-    <ProjectReference Include="..\WPF_Utils\WPF_Utils.csproj" />
+    <ProjectReference Include="..\WPF_Utils\WPF.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace WPF_Utils.Services
+﻿namespace WPF.Utils.Services
 {
     /// <summary>
     /// Taken from then original GalaSoft.MvvmLight.Views

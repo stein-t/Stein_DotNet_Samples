@@ -17,7 +17,7 @@ using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Stein_Samples.Services.FileSystemCompareService;
 using Stein_Samples.Services.TextTokenizerService;
 using System;
-using WPF_Utils.Services;
+using WPF.Utils.Services;
 
 namespace WPF.ViewModel.Helper
 {

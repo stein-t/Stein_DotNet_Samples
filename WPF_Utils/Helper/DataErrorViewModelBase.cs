@@ -1,7 +1,7 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System.ComponentModel;
 
-namespace WPF_Utils.Helper
+namespace WPF.Utils.Helper
 {
     /// <summary>
     /// Abstract base class for your ViewModels to provide error handling per IDataErrorInfo implementation.

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_FileSystemDiffSimul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_Tokenizer_Sample", "Console_Tokenizer_Sample\Console_Tokenizer_Sample.csproj", "{88089D92-AA60-44F3-987D-2BF439D6A8AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_Utils", "WPF_Utils\WPF_Utils.csproj", "{47620D46-AB23-4911-B662-E68F91B0B409}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Utils", "WPF_Utils\WPF.Utils.csproj", "{47620D46-AB23-4911-B662-E68F91B0B409}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF", "WPF\WPF.csproj", "{74BFACF2-0ADE-4F97-97E3-B7AF782217BE}"
 EndProject

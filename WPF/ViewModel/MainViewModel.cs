@@ -1,6 +1,6 @@
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using WPF_Utils.Services;
+using WPF.Utils.Services;
 
 namespace WPF.ViewModel
 {

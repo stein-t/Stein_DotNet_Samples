@@ -3,8 +3,7 @@ using Stein_Samples.Services.FileSystemCompareService.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows;
-using WPF_Utils.Helper;
-using WPF.Helper;
+using WPF.Utils.Helper;
 using Microsoft.Toolkit.Mvvm.Input;
 
 namespace WPF.ViewModel
@@ -43,7 +42,7 @@ namespace WPF.ViewModel
             {
                 if (value != _Path1)
                 {
-                    _Path1 = Utils.CheckPathEnding(value);
+                    _Path1 = WPF.Helper.Utils.CheckPathEnding(value);
                     OnPropertyChanged();
                 }
             }
@@ -63,7 +62,7 @@ namespace WPF.ViewModel
             {
                 if (value != _Path2)
                 {
-                    _Path2 = Utils.CheckPathEnding(value);
+                    _Path2 = WPF.Helper.Utils.CheckPathEnding(value);
                     OnPropertyChanged();
                 }
             }
