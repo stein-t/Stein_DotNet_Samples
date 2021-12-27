@@ -14,8 +14,8 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
-using Stein_Samples.Services.FileSystemCompareService;
-using Stein_Samples.Services.TextTokenizerService;
+using Samples.Services.FileSystemCompareService;
+using Samples.Services.TextTokenizerService;
 using System;
 using WPF.Utils.Services;
 

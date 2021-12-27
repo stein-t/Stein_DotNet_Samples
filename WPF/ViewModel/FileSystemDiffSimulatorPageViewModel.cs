@@ -1,5 +1,5 @@
-﻿using Stein_Samples.Services.FileSystemCompareService;
-using Stein_Samples.Services.FileSystemCompareService.Models;
+﻿using Samples.Services.FileSystemCompareService;
+using Samples.Services.FileSystemCompareService.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows;

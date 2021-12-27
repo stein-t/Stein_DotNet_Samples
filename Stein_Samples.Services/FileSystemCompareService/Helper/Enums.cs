@@ -1,6 +1,6 @@
 ﻿
 
-namespace Stein_Samples.Services.FileSystemCompareService.Helper
+namespace Samples.Services.FileSystemCompareService.Helper
 {
     /// <summary>
     /// holds the different file types, i.e. Directory or File 

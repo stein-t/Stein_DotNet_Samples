@@ -1,9 +1,9 @@
-﻿using Stein_Samples.Services.TextTokenizerService.Models;
+﻿using Samples.Services.TextTokenizerService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Stein_Samples.Services.TextTokenizerService
+namespace Samples.Services.TextTokenizerService
 {
     /// <summary>
     /// Service Implementation with logic for providing tokenizing a text

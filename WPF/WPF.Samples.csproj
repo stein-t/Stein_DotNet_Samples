@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stein_Samples.Services\Stein_Samples.Services.csproj" />
+    <ProjectReference Include="..\Stein_Samples.Services\Samples.Services.csproj" />
     <ProjectReference Include="..\WPF_Utils\WPF.Utils.csproj" />
   </ItemGroup>
 

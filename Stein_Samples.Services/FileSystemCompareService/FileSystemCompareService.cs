@@ -1,10 +1,10 @@
-﻿using Stein_Samples.Services.FileSystemCompareService.Helper;
-using Stein_Samples.Services.FileSystemCompareService.Models;
+﻿using Samples.Services.FileSystemCompareService.Helper;
+using Samples.Services.FileSystemCompareService.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Stein_Samples.Services.FileSystemCompareService
+namespace Samples.Services.FileSystemCompareService
 {
     /// <summary>
     /// Service Implementation with logic for comparing a filesystem

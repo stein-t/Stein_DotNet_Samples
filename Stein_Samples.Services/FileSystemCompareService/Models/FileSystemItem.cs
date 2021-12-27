@@ -1,9 +1,9 @@
-﻿using Stein_Samples.Services.FileSystemCompareService.Helper;
+﻿using Samples.Services.FileSystemCompareService.Helper;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Stein_Samples.Services.FileSystemCompareService.Models
+namespace Samples.Services.FileSystemCompareService.Models
 {
     /// <summary>
     /// Model holding File (or Directory) path information

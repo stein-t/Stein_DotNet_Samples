@@ -3,17 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stein_Samples.Services", "Stein_Samples.Services\Stein_Samples.Services.csproj", "{1FEAFA59-4E58-4CC6-B994-9F624CD44425}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_FileSystemDiffSimulator", "Console_FileSystemDiffSimulator\Console_FileSystemDiffSimulator.csproj", "{CD6BFD03-965A-4344-A596-F8F703BE28CF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_Tokenizer_Sample", "Console_Tokenizer_Sample\Console_Tokenizer_Sample.csproj", "{88089D92-AA60-44F3-987D-2BF439D6A8AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Services", "Stein_Samples.Services\Samples.Services.csproj", "{1FEAFA59-4E58-4CC6-B994-9F624CD44425}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Utils", "WPF_Utils\WPF.Utils.csproj", "{47620D46-AB23-4911-B662-E68F91B0B409}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Samples", "WPF\WPF.Samples.csproj", "{74BFACF2-0ADE-4F97-97E3-B7AF782217BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console.Samples", "Console.Samples\Console.Samples.csproj", "{DBB4E3F4-B9E7-423E-876F-4E4987A63CB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console.Samples", "Console.Samples\Console.Samples.csproj", "{DBB4E3F4-B9E7-423E-876F-4E4987A63CB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +21,6 @@ Global
 		{1FEAFA59-4E58-4CC6-B994-9F624CD44425}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FEAFA59-4E58-4CC6-B994-9F624CD44425}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FEAFA59-4E58-4CC6-B994-9F624CD44425}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD6BFD03-965A-4344-A596-F8F703BE28CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD6BFD03-965A-4344-A596-F8F703BE28CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD6BFD03-965A-4344-A596-F8F703BE28CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD6BFD03-965A-4344-A596-F8F703BE28CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88089D92-AA60-44F3-987D-2BF439D6A8AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88089D92-AA60-44F3-987D-2BF439D6A8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88089D92-AA60-44F3-987D-2BF439D6A8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88089D92-AA60-44F3-987D-2BF439D6A8AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{47620D46-AB23-4911-B662-E68F91B0B409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{47620D46-AB23-4911-B662-E68F91B0B409}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47620D46-AB23-4911-B662-E68F91B0B409}.Release|Any CPU.ActiveCfg = Release|Any CPU

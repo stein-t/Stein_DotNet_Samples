@@ -1,39 +1,12 @@
 ﻿using NLog;
-using Stein_Samples.Services.FileSystemCompareService;
-using Stein_Samples.Services.FileSystemCompareService.Models;
+using Samples.Services.FileSystemCompareService;
+using Samples.Services.FileSystemCompareService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Console.Samples.Services
 {
-    /// <summary>
-    /// Service class with formatted output
-    /// </summary>
-    public class FileSystemCompareOutputService
-    {
-        /// <summary>
-        /// Prepare custom Console Output
-        /// </summary>
-        /// <param name="words"></param>
-        public void Output(IEnumerable<FileSystemCompareOperation> items)
-        {
-            if (items is null) { return; }
-
-            foreach (var item in items.Where(x => !string.IsNullOrEmpty(x.Message)))
-            {
-                // display any information/warning/error messages
-                System.Console.WriteLine(item.Message);
-            }
-
-            foreach (var item in items.Where(x => string.IsNullOrEmpty(x.Message)))
-            {
-                // display formatted content
-                System.Console.WriteLine(string.Format("{0,-8}{1,-24}{2, -24}", item.Step.ToString() + ".", item.OperationText, item.Item.RelativePath));
-            }
-        }
-    }
-
     /// <summary>
     /// reads two Folder Inputs, compares all files including subfolders and simulates all operations needed to make the second destination equal to the second destination
     /// </summary>
@@ -43,14 +16,10 @@ namespace Console.Samples.Services
         public static readonly string Title = "Filesystem Diff Simulator";
 
         private readonly IFileSystemCompareService _fileSystemCompareService;
-        private readonly FileSystemCompareOutputService _outputService;
 
-        public FileSystemCompareConsoleService(
-            IFileSystemCompareService fileSystemCompareService,
-            FileSystemCompareOutputService outputService)
+        public FileSystemCompareConsoleService(IFileSystemCompareService fileSystemCompareService)
         {
             _fileSystemCompareService = fileSystemCompareService;
-            _outputService = outputService;
         }
 
         public void Start()
@@ -87,7 +56,7 @@ namespace Console.Samples.Services
                 }
 
                 //provide console output of the result items
-                _outputService.Output(result);
+                Output(result);
 
                 // get the user input for every iteration, allowing to exit at will
                 System.Console.WriteLine("Continue [y|n]?");
@@ -98,6 +67,27 @@ namespace Console.Samples.Services
                 }
             }
             while (true);
+        }
+
+        /// <summary>
+        /// Prepare custom Console Output
+        /// </summary>
+        /// <param name="words"></param>
+        private static void Output(IEnumerable<FileSystemCompareOperation> items)
+        {
+            if (items is null) { return; }
+
+            foreach (var item in items.Where(x => !string.IsNullOrEmpty(x.Message)))
+            {
+                // display any information/warning/error messages
+                System.Console.WriteLine(item.Message);
+            }
+
+            foreach (var item in items.Where(x => string.IsNullOrEmpty(x.Message)))
+            {
+                // display formatted content
+                System.Console.WriteLine(string.Format("{0,-8}{1,-24}{2, -24}", item.Step.ToString() + ".", item.OperationText, item.Item.RelativePath));
+            }
         }
     }
 }

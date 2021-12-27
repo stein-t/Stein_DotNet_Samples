@@ -1,9 +1,9 @@
-﻿using Stein_Samples.Services.FileSystemCompareService.Models;
+﻿using Samples.Services.FileSystemCompareService.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Stein_Samples.Services.FileSystemCompareService
+namespace Samples.Services.FileSystemCompareService
 {
     /// <summary>
     /// Contract for the FileSystemCompareService

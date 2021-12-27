@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stein_Samples.Services\Stein_Samples.Services.csproj" />
+    <ProjectReference Include="..\Stein_Samples.Services\Samples.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
-﻿using Stein_Samples.Services.FileSystemCompareService.Helper;
+﻿using Samples.Services.FileSystemCompareService.Helper;
 
-namespace Stein_Samples.Services.FileSystemCompareService.Models
+namespace Samples.Services.FileSystemCompareService.Models
 {
     /// <summary>
     /// Model that holds result items for the DIFF operations list

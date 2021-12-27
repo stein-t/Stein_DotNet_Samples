@@ -1,6 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using Stein_Samples.Services.TextTokenizerService;
+using Samples.Services.TextTokenizerService;
 using System;
 using System.Collections.Generic;
 using System.Windows;

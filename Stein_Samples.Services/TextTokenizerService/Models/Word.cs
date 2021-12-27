@@ -1,4 +1,4 @@
-﻿namespace Stein_Samples.Services.TextTokenizerService.Models
+﻿namespace Samples.Services.TextTokenizerService.Models
 {
     /// <summary>
     /// Model for Word properties

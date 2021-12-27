@@ -1,7 +1,7 @@
-﻿using Stein_Samples.Services.TextTokenizerService.Models;
+﻿using Samples.Services.TextTokenizerService.Models;
 using System.Collections.Generic;
 
-namespace Stein_Samples.Services.TextTokenizerService
+namespace Samples.Services.TextTokenizerService
 {
     /// <summary>
     /// Contract for the Tokenizer Service

@@ -1,5 +1,5 @@
 ﻿using NLog;
-using Stein_Samples.Services.TextTokenizerService;
+using Samples.Services.TextTokenizerService;
 using System;
 using System.Collections.Generic;
 
