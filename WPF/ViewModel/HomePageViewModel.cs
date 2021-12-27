@@ -1,7 +1,7 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
 using WPF.Utils.Services;
 
-namespace WPF.ViewModel
+namespace WPF.Samples.ViewModel
 {
     /// <summary>
     /// Very simple Navigation logic
@@ -45,7 +45,7 @@ namespace WPF.ViewModel
         /// </summary>
         public HomePageViewModel(IFrameNavigationService navigationService)
         {
-            WindowTitle = "Stein WPF Samples - Home";
+            WindowTitle = "Stein WPF.Samples Samples - Home";
 
             _navigationService = navigationService;
 

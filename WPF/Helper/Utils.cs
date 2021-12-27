@@ -1,5 +1,5 @@
 ﻿
-namespace WPF.Helper
+namespace WPF.Samples.Helper
 {
     public static class Utils
     {

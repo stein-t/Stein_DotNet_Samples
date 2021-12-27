@@ -1,7 +1,7 @@
 /*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:WPF.ViewModel.Helper"
+      <vm:ViewModelLocator xmlns:vm="clr-namespace:WPF.Samples.ViewModel.Helper"
                            x:Key="Locator" />
   </Application.Resources>
   
@@ -19,7 +19,7 @@ using Stein_Samples.Services.TextTokenizerService;
 using System;
 using WPF.Utils.Services;
 
-namespace WPF.ViewModel.Helper
+namespace WPF.Samples.ViewModel.Helper
 {
     /// <summary>
     /// This class contains static references to all the view models in the

@@ -2,7 +2,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using WPF.Utils.Services;
 
-namespace WPF.ViewModel
+namespace WPF.Samples.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.

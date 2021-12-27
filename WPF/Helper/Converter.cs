@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace WPF.Helper
+namespace WPF.Samples.Helper
 {
     /// <summary>
     /// Converter to do some value formatting for displaying purposes, i.e. put a dot "." after the step number  

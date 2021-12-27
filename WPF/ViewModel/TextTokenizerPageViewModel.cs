@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace WPF.ViewModel
+namespace WPF.Samples.ViewModel
 {
     /// <summary>
     /// ViewModel Logic for supporting the GUI of the TextTokenizer
@@ -91,7 +91,7 @@ namespace WPF.ViewModel
         /// </summary>
         public TextTokenizerPageViewModel(ITokenizerService tokenizerService)
         {
-            WindowTitle = "Stein WPF Samples - Text Tokenizer";
+            WindowTitle = "Stein WPF.Samples Samples - Text Tokenizer";
 
             _TokenizerService = tokenizerService;
 

@@ -6,7 +6,7 @@ using System.Windows;
 using WPF.Utils.Helper;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace WPF.ViewModel
+namespace WPF.Samples.ViewModel
 {
     /// <summary>
     /// ViewModel Logic for supporting the GUI of the FileSystemDiffSimulator
@@ -42,7 +42,7 @@ namespace WPF.ViewModel
             {
                 if (value != _Path1)
                 {
-                    _Path1 = WPF.Helper.Utils.CheckPathEnding(value);
+                    _Path1 = WPF.Samples.Helper.Utils.CheckPathEnding(value);
                     OnPropertyChanged();
                 }
             }
@@ -62,7 +62,7 @@ namespace WPF.ViewModel
             {
                 if (value != _Path2)
                 {
-                    _Path2 = WPF.Helper.Utils.CheckPathEnding(value);
+                    _Path2 = WPF.Samples.Helper.Utils.CheckPathEnding(value);
                     OnPropertyChanged();
                 }
             }
@@ -112,7 +112,7 @@ namespace WPF.ViewModel
         /// </summary>
         public FileSystemDiffSimulatorPageViewModel(IFileSystemCompareService fileSystemCompareService)
         {
-            WindowTitle = "Stein WPF Samples - Filesystem Diff Simulator";
+            WindowTitle = "Stein WPF.Samples Samples - Filesystem Diff Simulator";
 
             _FileSystemCompareService = fileSystemCompareService;
 
