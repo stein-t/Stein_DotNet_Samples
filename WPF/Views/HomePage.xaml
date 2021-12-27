@@ -1,0 +1,21 @@
+﻿<Page x:Class="WPF.Views.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Home"
+      DataContext="{Binding Home, Source={StaticResource Locator}}">
+    <Grid>
+        <StackPanel Orientation="Horizontal" Height="70" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button Name="TextTokenizerButton" Content="Text Tokenizer" 
+                    Style="{StaticResource myNavigationButton}"
+                    Command="{Binding NavigateToTextTokenizerCommand}"/>
+            <Button Name="FileSystemDiffButton" Content="Filesystem Diff Calculator"
+                    Style="{StaticResource myNavigationButton}"
+                    Command="{Binding NavigateToFileSystemDiffCommand}"/>
+        </StackPanel>
+    </Grid>
+</Page>

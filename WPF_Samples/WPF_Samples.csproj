@@ -159,10 +159,6 @@
       <Project>{1FEAFA59-4E58-4CC6-B994-9F624CD44425}</Project>
       <Name>Stein_Samples.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WPF_Infrastructure\WPF_Infrastructure.csproj">
-      <Project>{AB283F1E-E48F-402E-9B78-57F2CA2F8333}</Project>
-      <Name>WPF_Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
